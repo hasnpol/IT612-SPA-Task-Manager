@@ -1,6 +1,5 @@
 import "./styles.css";
 import Timer from "./Timer";
-import { Input, Label } from "reactstrap";
 
 function Person() {
   return (
@@ -9,8 +8,6 @@ function Person() {
       <br /> <h3>Peter Parker</h3>
       <Timer />
       <br />
-      <Label>Total Hours in Pay-Period: </Label>
-      <Input value="0" />
     </div>
   );
 }

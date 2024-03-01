@@ -5,6 +5,10 @@ const Timer = () => {
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [totalHours, setTotatHours] = useState(0);
+  const [totalMinutes, setTotalMinutes] = useState(0);
+  const [total, setTotal] = useState("0:00");
+  const [isSubmitted, setIsSubmitted] = useState(true);
 
   useEffect(() => {
     let interval;
@@ -22,25 +26,43 @@ const Timer = () => {
             setHours((prevHours) => prevHours + 1);
           }
         }
-      }, 1000);
+      }, 1); // set this to '1' to test functionality of Total Hours in Pay-Period.
     }
 
     return () => clearInterval(interval);
   }, [isRunning, seconds, minutes, hours]);
 
   const handleStart = () => {
-    setIsRunning(true);
+    if (isSubmitted === true) {
+      setIsRunning(true);
+    } else {
+      alert("Please Submit Your Hours Before Clocking In Again!");
+    }
   };
 
   const handleStop = () => {
     setIsRunning(false);
+    setIsSubmitted(false);
+    if (totalMinutes + minutes > 59) {
+      setTotatHours(totalHours + hours + 1);
+      setTotalMinutes((totalMinutes + minutes) % 60);
+    } else {
+      setTotatHours(totalHours + hours);
+      setTotalMinutes(totalMinutes + minutes);
+    }
   };
 
-  const handleReset = () => {
+  const handleTotalHours = () => {
     setSeconds(0);
     setMinutes(0);
     setHours(0);
     setIsRunning(false);
+    setIsSubmitted(true);
+    if (totalMinutes < 10) {
+      setTotal(`${totalHours}:0${totalMinutes}`);
+    } else {
+      setTotal(`${totalHours}:${totalMinutes}`);
+    }
   };
 
   return (
@@ -53,7 +75,10 @@ const Timer = () => {
       <button onClick={handleStop} disabled={!isRunning}>
         Clock out
       </button>
-      <button onClick={handleReset}>Reset</button>
+      <button onClick={handleTotalHours}> Submit</button>
+      <br />
+      <label>Total Hours in Pay-Period: </label>
+      <input value={total} />
     </div>
   );
 };
