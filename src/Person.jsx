@@ -9,9 +9,6 @@ function Person() {
       <br /> <h3>Peter Parker</h3>
       <Timer />
       <br />
-      <Label>Total Hours in Today: </Label>
-      <Input value="0" />
-      <br />
       <Label>Total Hours in Pay-Period: </Label>
       <Input value="0" />
     </div>
