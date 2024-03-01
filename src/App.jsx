@@ -5,9 +5,8 @@ import TaskManager from "./TaskManager";
 export default function App() {
   return (
     <div className="App">
-      <h1>Personal Task Manager</h1>
+      <h1 id="title">Personal Task Manager</h1>
       <Person />
-      <hr />
       <TaskManager />
     </div>
   );

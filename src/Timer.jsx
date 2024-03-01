@@ -67,7 +67,7 @@ const Timer = () => {
 
   return (
     <div>
-      <h1>Timer</h1>
+      <h2>Timer</h2>
       <p>{`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`}</p>
       <button onClick={handleStart} disabled={isRunning}>
         Clock in
@@ -77,6 +77,7 @@ const Timer = () => {
       </button>
       <button onClick={handleTotalHours}> Submit</button>
       <br />
+      <p></p>
       <label>Total Hours in Pay-Period: </label>
       <input value={total} />
     </div>
