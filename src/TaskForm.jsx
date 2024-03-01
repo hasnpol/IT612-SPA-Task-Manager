@@ -14,13 +14,7 @@ export default function TaskForm(ownerName, projectName, dateDue) {
     <Form>
       <Container>
         <FormGroup>
-          <Input
-            id="tasklist"
-            multiple
-            name="tasklist"
-            type="textarea"
-            size="6"
-          >
+          <Input id="tasklist" multiple name="tasklist" type="select" size="6">
             {taskList.map((w, i) => (
               <option value={i}>
                 Project Owner: {w.ownerName} \t Project Name: {w.project} \t Due
