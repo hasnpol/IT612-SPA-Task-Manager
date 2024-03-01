@@ -7,6 +7,7 @@ export default function App() {
     <div className="App">
       <h1 id="title">Personal Task Manager</h1>
       <Person />
+      <hr />
       <TaskManager />
     </div>
   );

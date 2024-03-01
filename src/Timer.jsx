@@ -67,7 +67,7 @@ const Timer = () => {
 
   return (
     <div>
-      <h2>Timer</h2>
+      <h2>Time Clock System</h2>
       <p>{`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`}</p>
       <button onClick={handleStart} disabled={isRunning}>
         Clock in
