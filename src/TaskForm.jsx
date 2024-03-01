@@ -49,7 +49,6 @@ export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
     <Form>
       <Container>
         <FormGroup>
-<<<<<<< HEAD
           <Input
             type="text"
             placeholder="Project Owner"
@@ -81,17 +80,6 @@ export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
               {isOpen ? "Hide Details" : "Show Details"}
             </Button>
           )}
-=======
-          <Input id="tasklist" multiple name="tasklist" type="select" size="6">
-            {taskList.map((w, i) => (
-              <option value={i}>
-                Project Owner: {w.ownerName} \t Project Name: {w.project} \t Due
-                Date: {w.date} \n
-              </option>
-              /*Prints out the items for task*/
-            ))}
-          </Input>
->>>>>>> 6abfb61cd51be1fa414cdd660101bfaa150d7894
         </FormGroup>
 
         {editableTask && (

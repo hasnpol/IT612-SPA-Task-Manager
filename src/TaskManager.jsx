@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // TaskManager.jsx
 import React, { useState } from "react";
 import {
@@ -9,14 +8,6 @@ import {
   ListGroupItem,
   Collapse,
 } from "reactstrap";
-=======
-import "./styles.css";
-import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
-import { Container, Form, Input, Label } from "reactstrap";
-
-import DatePicker from "react-datepicker";
->>>>>>> 6abfb61cd51be1fa414cdd660101bfaa150d7894
 import TaskForm from "./TaskForm";
 import "./styles.css";
 
@@ -63,7 +54,6 @@ export default function TaskManager() {
   return (
     <Form className="App">
       <h1>Tasks</h1>
-
 
       <Container className="TaskFormContainer">
         <TaskForm
@@ -129,39 +119,6 @@ export default function TaskManager() {
             </ListGroupItem>
           ))}
         </ListGroup>
-=======
-      <Label>Project Owner: </Label>
-      <form method="post" onSubmit={handleSubmit}>
-        <Input
-          name="owner"
-          value={owner}
-          onChange={(e) => setOwner(e.target.value)}
-        />{" "}
-        {/*Captures 'owner' value from user.*/}
-        <Label>Project Name: </Label>
-        <Input
-          name="project"
-          value={project}
-          onChange={(e) => setProject(e.target.value)}
-        />
-        {/*Captures 'project' value from user.*/}
-        <Label>Due Date: </Label>
-        <DatePicker
-          name="date"
-          selected={date}
-          onChange={(date) => setDate(date)}
-        />
-        <button type="submit">Submit form</button>
-        <button type="reset">Reset form</button>
-      </form>
-      {/*Lets user select date and assigns it.*/}
-      <Container>
-        {/*<Row>
-          <Col>
-            <TaskForm ownerName={owner} projectName={project} dateDue={date} />
-          </Col>
-        </Row>*/}
->>>>>>> 6abfb61cd51be1fa414cdd660101bfaa150d7894
       </Container>
     </Form>
   );
