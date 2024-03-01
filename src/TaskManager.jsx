@@ -1,4 +1,3 @@
-// TaskManager.jsx
 import React, { useState } from "react";
 import {
   Form,
@@ -52,8 +51,8 @@ export default function TaskManager() {
   }
 
   return (
-    <Form className="App">
-      <h1>Tasks</h1>
+    <Form className="Task">
+      <h1 id="task_title">Tasks</h1>
 
       <Container className="TaskFormContainer">
         <TaskForm
