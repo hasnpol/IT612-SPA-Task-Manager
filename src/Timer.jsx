@@ -1,57 +1,61 @@
-import "./styles.css";
 import React, { useState, useEffect } from "react";
 
-function Timer() {
-  const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
+const Timer = () => {
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [hours, setHours] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
-    let intervalId;
+    let interval;
 
     if (isRunning) {
-      intervalId = setInterval(() => {
-        setTime((prevTime) => {
-          const newSeconds = prevTime.seconds + 1;
-          const newMinutes = Math.floor(newSeconds / 60);
-          const newHours = Math.floor(newMinutes / 60);
+      interval = setInterval(() => {
+        setSeconds((prevSeconds) => prevSeconds + 1);
 
-          return {
-            hours: newHours,
-            minutes: newMinutes % 60,
-            seconds: newSeconds % 60,
-          };
-        });
+        if (seconds === 59) {
+          setSeconds(0);
+          setMinutes((prevMinutes) => prevMinutes + 1);
+
+          if (minutes === 59) {
+            setMinutes(0);
+            setHours((prevHours) => prevHours + 1);
+          }
+        }
       }, 1000);
     }
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [isRunning]);
+    return () => clearInterval(interval);
+  }, [isRunning, seconds, minutes, hours]);
 
-  const startTimer = () => {
+  const handleStart = () => {
     setIsRunning(true);
   };
 
-  const stopTimer = () => {
+  const handleStop = () => {
     setIsRunning(false);
   };
 
-  const resetTimer = () => {
+  const handleReset = () => {
+    setSeconds(0);
+    setMinutes(0);
+    setHours(0);
     setIsRunning(false);
-    setTime({ hours: 0, minutes: 0, seconds: 0 });
   };
 
   return (
     <div>
-      <h3>
-        {time.hours}h {time.minutes}m {time.seconds}s
-      </h3>
-      <button onClick={startTimer}>Clock in</button>
-      <button onClick={stopTimer}>Clock out</button>
-      <button onClick={resetTimer}>Reset Clock</button>
+      <h1>Timer</h1>
+      <p>{`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`}</p>
+      <button onClick={handleStart} disabled={isRunning}>
+        Clock in
+      </button>
+      <button onClick={handleStop} disabled={!isRunning}>
+        Clock out
+      </button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
-}
+};
 
 export default Timer;

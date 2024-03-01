@@ -8,6 +8,7 @@
 img {
   width: 200px;
   height: 200px;
+<<<<<<< HEAD
 }
 
 .TaskFormContainer {
@@ -33,4 +34,7 @@ ListGroupItem {
 .collapsing {
   height: 0 !important;
   overflow: hidden;
+=======
+  border-width: 10;
+>>>>>>> 6abfb61cd51be1fa414cdd660101bfaa150d7894
 }
