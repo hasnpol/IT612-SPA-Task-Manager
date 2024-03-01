@@ -1,9 +1,36 @@
+/* styles.css */
 .App {
   font-family: sans-serif;
   text-align: left;
+  padding: 20px;
 }
 
 img {
   width: 200px;
   height: 200px;
+}
+
+.TaskFormContainer {
+  margin-top: 20px;
+}
+
+ListGroupItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.completedTask {
+  text-decoration: line-through;
+}
+
+.Collapse {
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+
+.collapsing {
+  height: 0 !important;
+  overflow: hidden;
 }
