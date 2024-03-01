@@ -47,7 +47,6 @@ export default function TaskManager() {
           selected={date}
           onChange={(date) => setDate(date)}
         />
-        <\t>
         <button type="submit">Submit form</button>
         <button type="reset">Reset form</button>
       </form>
