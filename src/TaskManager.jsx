@@ -69,7 +69,10 @@ export default function TaskManager() {
             >
               <div>
                 <div>
-                  <strong>{task.projectName}</strong> | Due Date: {task.dateDue}
+                  <strong>Project Owner: </strong>
+                  {task.ownerName} | <strong>Project Name: </strong>
+                  {task.projectName} | <strong>Due Date: </strong>
+                  {task.dateDue}
                 </div>
                 {editableTask && editableTask.id === task.id && (
                   <Button
