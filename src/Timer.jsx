@@ -26,7 +26,7 @@ const Timer = () => {
             setHours((prevHours) => prevHours + 1);
           }
         }
-      }, 1000); // set this to '1' to test functionality of Total Hours in Pay-Period.
+      }, 1); // set this to '1' to test functionality of Total Hours in Pay-Period.
     }
 
     return () => clearInterval(interval);
