@@ -35,6 +35,21 @@ export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
       return;
     }
 
+    // Save data to JSON file
+    const taskData = {
+      ownerName: task.ownerName,
+      projectName: task.projectName,
+      dateDue: task.dateDue,
+    };
+    const fs = require("fs");
+
+    // Convert taskData to JSON format
+    const jsonData = JSON.stringify(taskData);
+
+    // Write to the JSON file
+    fs.writeFileSync("./TaskData.json", jsonData);
+
+    // Continue with the existing logic for onTaskSubmit or onTaskEdit
     if (editableTask) {
       onTaskEdit(editableTask.id, task);
     } else {

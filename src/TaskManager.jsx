@@ -14,6 +14,14 @@ export default function TaskManager() {
   const [tasks, setTasks] = useState([]);
   const [editableTask, setEditableTask] = useState(null);
 
+  /*useEffect(() => {
+    // Fetch data from TaskData.json
+    fetch("./TaskData.json")
+      .then((response) => response.json())
+      .then((data) => setTasks(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);*/
+
   const handleTaskSubmit = (newTask) => {
     setTasks([...tasks, { ...newTask, id: tasks.length, completed: false }]);
   };
@@ -37,18 +45,6 @@ export default function TaskManager() {
     const filteredTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(filteredTasks);
   };
-
-  function handleSubmit(e) {
-    // Prevent the browser from reloading the page
-    e.preventDefault();
-
-    // Read the form data
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // You can pass formData as a fetch body directly:
-    fetch("./TaskForm.json", { method: form.method, body: formData });
-  }
 
   return (
     <Form className="Task">
