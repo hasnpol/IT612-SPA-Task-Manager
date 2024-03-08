@@ -1,33 +1,13 @@
 // TaskForm.jsx
-import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-  Collapse,
-} from "reactstrap";
+import React, { useState } from "react";
+import { Container, Form, FormGroup, Input, Button } from "reactstrap";
 
-export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
+export default function TaskForm({ onTaskSubmit }) {
   const [task, setTask] = useState({
     ownerName: "",
     projectName: "",
     dateDue: "",
-    description: "",
   });
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (editableTask) {
-      setTask({
-        ownerName: editableTask.ownerName,
-        projectName: editableTask.projectName,
-        dateDue: editableTask.dateDue,
-        description: editableTask.description,
-      });
-    }
-  }, [editableTask]);
 
   const handleSubmit = () => {
     if (!task.ownerName || !task.projectName || !task.dateDue) {
@@ -48,16 +28,9 @@ export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
     try {
       // Write to local storage
       localStorage.setItem("TaskData", jsonData);
-
-      if (editableTask) {
-        onTaskEdit(editableTask.id, task);
-      } else {
-        onTaskSubmit(task);
-      }
-
+      onTaskSubmit(task);
       // Reset the form
       setTask({ ownerName: "", projectName: "", dateDue: "", description: "" });
-      setIsOpen(false);
     } catch (error) {
       console.error("Error saving data:", error.message);
       // Handle error, e.g., display an error message to the user
@@ -99,32 +72,9 @@ export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
             }
           />
           <Button color="primary" onClick={handleSubmit}>
-            {editableTask ? "Edit Task" : "Add Task"}
+            Add Task
           </Button>
-          {editableTask && (
-            <Button
-              color="info"
-              onClick={() => setIsOpen(!isOpen)}
-              className="ml-2"
-              style={{ display: "none" }}
-            >
-              {isOpen ? "Hide Details" : "Show Details"}
-            </Button>
-          )}
         </FormGroup>
-
-        {editableTask && (
-          <Collapse isOpen={isOpen}>
-            <Input
-              type="textarea"
-              placeholder="Description"
-              value={task.description}
-              onChange={(e) =>
-                setTask({ ...task, description: e.target.value })
-              }
-            />
-          </Collapse>
-        )}
       </Container>
     </Form>
   );

@@ -1,6 +1,8 @@
 import "./styles.css";
 import Timer from "./Timer";
 
+// Person component; contains basic information about the person.
+// Contains a Timer component.
 function Person() {
   return (
     <div>

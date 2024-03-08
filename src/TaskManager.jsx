@@ -1,30 +1,16 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Button,
-  Container,
-  ListGroup,
-  ListGroupItem,
-  Collapse,
-} from "reactstrap";
+import { Form, Button, Container, ListGroup, ListGroupItem } from "reactstrap";
 import TaskForm from "./TaskForm";
 import DataPusher from "./DataPusher";
 import "./styles.css";
 
+// TaskManager component; contains a form and a list of tasks.
+// Contains TaskForm and DataPusher components.
 export default function TaskManager() {
   const [tasks, setTasks] = useState([]);
-  const [editableTask, setEditableTask] = useState(null);
 
   const handleTaskSubmit = (newTask) => {
     setTasks([...tasks, { ...newTask, id: tasks.length, completed: false }]);
-  };
-
-  const handleTaskEdit = (taskId, updatedTask) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, ...updatedTask } : task,
-    );
-    setTasks(updatedTasks);
-    setEditableTask(null);
   };
 
   const handleTaskComplete = (taskId) => {
@@ -42,14 +28,8 @@ export default function TaskManager() {
   return (
     <Form className="Task">
       <h1 id="task_title">Tasks</h1>
-
       <Container className="TaskFormContainer">
-        <TaskForm
-          onTaskSubmit={handleTaskSubmit}
-          onTaskEdit={handleTaskEdit}
-          editableTask={editableTask}
-        />
-
+        <TaskForm onTaskSubmit={handleTaskSubmit} />
         <ListGroup>
           {tasks.map((task) => (
             <ListGroupItem
@@ -58,24 +38,6 @@ export default function TaskManager() {
             >
               <DataPusher />
               <div>
-                {editableTask && editableTask.id === task.id && (
-                  <Button
-                    color="info"
-                    onClick={() => setEditableTask(null)}
-                    style={{ marginRight: "10px" }}
-                  >
-                    Hide Details
-                  </Button>
-                )}
-                {!editableTask && task.description && (
-                  <Button
-                    color="info"
-                    onClick={() => setEditableTask(task)}
-                    style={{ marginRight: "10px" }}
-                  >
-                    Show Details
-                  </Button>
-                )}
                 |
                 <Button
                   color="success"
@@ -91,17 +53,6 @@ export default function TaskManager() {
                   Remove
                 </Button>
               </div>
-
-              {editableTask && editableTask.id === task.id && (
-                <Collapse isOpen={editableTask && editableTask.id === task.id}>
-                  <div>
-                    <div>Project Owner: {task.ownerName}</div>
-                    <div style={{ maxHeight: "50px", overflowY: "auto" }}>
-                      Description: {task.description}
-                    </div>
-                  </div>
-                </Collapse>
-              )}
             </ListGroupItem>
           ))}
         </ListGroup>
