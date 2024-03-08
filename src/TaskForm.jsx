@@ -30,7 +30,7 @@ export default function TaskForm({ onTaskSubmit }) {
       localStorage.setItem("TaskData", jsonData);
       onTaskSubmit(task);
       // Reset the form
-      setTask({ ownerName: "", projectName: "", dateDue: "", description: "" });
+      setTask({ ownerName: "", projectName: "", dateDue: "" });
     } catch (error) {
       console.error("Error saving data:", error.message);
       // Handle error, e.g., display an error message to the user
