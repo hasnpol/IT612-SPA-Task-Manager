@@ -35,29 +35,33 @@ export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
       return;
     }
 
-    // Save data to JSON file
+    // Save data to local storage
     const taskData = {
       ownerName: task.ownerName,
       projectName: task.projectName,
       dateDue: task.dateDue,
     };
-    const fs = require("fs");
 
     // Convert taskData to JSON format
     const jsonData = JSON.stringify(taskData);
 
-    // Write to the JSON file
-    fs.writeFileSync("./TaskData.json", jsonData);
+    try {
+      // Write to local storage
+      localStorage.setItem("TaskData", jsonData);
 
-    // Continue with the existing logic for onTaskSubmit or onTaskEdit
-    if (editableTask) {
-      onTaskEdit(editableTask.id, task);
-    } else {
-      onTaskSubmit(task);
+      if (editableTask) {
+        onTaskEdit(editableTask.id, task);
+      } else {
+        onTaskSubmit(task);
+      }
+
+      // Reset the form
+      setTask({ ownerName: "", projectName: "", dateDue: "", description: "" });
+      setIsOpen(false);
+    } catch (error) {
+      console.error("Error saving data:", error.message);
+      // Handle error, e.g., display an error message to the user
     }
-
-    setTask({ ownerName: "", projectName: "", dateDue: "", description: "" });
-    setIsOpen(false);
   };
 
   return (
@@ -68,19 +72,31 @@ export default function TaskForm({ onTaskSubmit, onTaskEdit, editableTask }) {
             type="text"
             placeholder="Project Owner"
             value={task.ownerName}
-            onChange={(e) => setTask({ ...task, ownerName: e.target.value })}
+            onChange={(e) =>
+              setTask((prevTask) => ({
+                ...prevTask,
+                ownerName: e.target.value,
+              }))
+            }
           />
           <Input
             type="text"
             placeholder="Project Name"
             value={task.projectName}
-            onChange={(e) => setTask({ ...task, projectName: e.target.value })}
+            onChange={(e) =>
+              setTask((prevTask) => ({
+                ...prevTask,
+                projectName: e.target.value,
+              }))
+            }
           />
           <Input
             type="date"
             placeholder="Due Date"
             value={task.dateDue}
-            onChange={(e) => setTask({ ...task, dateDue: e.target.value })}
+            onChange={(e) =>
+              setTask((prevTask) => ({ ...prevTask, dateDue: e.target.value }))
+            }
           />
           <Button color="primary" onClick={handleSubmit}>
             {editableTask ? "Edit Task" : "Add Task"}

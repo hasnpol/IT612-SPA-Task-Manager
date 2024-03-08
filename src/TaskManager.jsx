@@ -8,19 +8,12 @@ import {
   Collapse,
 } from "reactstrap";
 import TaskForm from "./TaskForm";
+import DataPusher from "./DataPusher";
 import "./styles.css";
 
 export default function TaskManager() {
   const [tasks, setTasks] = useState([]);
   const [editableTask, setEditableTask] = useState(null);
-
-  /*useEffect(() => {
-    // Fetch data from TaskData.json
-    fetch("./TaskData.json")
-      .then((response) => response.json())
-      .then((data) => setTasks(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);*/
 
   const handleTaskSubmit = (newTask) => {
     setTasks([...tasks, { ...newTask, id: tasks.length, completed: false }]);
@@ -63,13 +56,8 @@ export default function TaskManager() {
               key={task.id}
               className={task.completed ? "completedTask" : ""}
             >
+              <DataPusher />
               <div>
-                <div>
-                  <strong>Project Owner: </strong>
-                  {task.ownerName} | <strong>Project Name: </strong>
-                  {task.projectName} | <strong>Due Date: </strong>
-                  {task.dateDue}
-                </div>
                 {editableTask && editableTask.id === task.id && (
                   <Button
                     color="info"
