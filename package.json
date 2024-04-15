@@ -1,4 +1,5 @@
 {
+  "homepage": "https://hasnpol.github.io/IT612-SPA-Task-Manager",
   "name": "react",
   "version": "1.0.0",
   "description": "",
@@ -20,6 +21,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "vite build",
     "preview": "vite preview"
   },
