@@ -20,22 +20,12 @@ body {
   margin-top: 10px;
   width: 70%;
   margin: 0 auto;
-  border-bottom-left-radius: 50% 30%;
-  border-bottom-right-radius: 50% 30%;
-  border-top-left-radius: 50% 30%;
-  border-top-right-radius: 50% 30%;
-  background-image: linear-gradient(#a971ee, #471341);
 }
 
 #task_title {
   text-align: center;
   margin-top: 10px;
   width: 20%;
-  border-bottom-left-radius: 50% 30%;
-  border-bottom-right-radius: 50% 30%;
-  border-top-left-radius: 50% 30%;
-  border-top-right-radius: 50% 30%;
-  background-image: linear-gradient(#a971ee, #471341);
 }
 
 img {
